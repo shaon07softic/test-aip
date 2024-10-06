@@ -1,19 +1,18 @@
-export default async function Home({ ip }: any) {
-  // const [data, setData] = useState(null);
+"use client";
+import { useEffect, useState } from "react";
 
-  const data = await fetch("http://localhost:3000/api/ip", {
-    cache: "no-store",
-  }).then((res) => res.json());
+export default function Home({ ip }: any) {
+  const [data, setData] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch("/api/ip");
-  //     const data = await response.json();
-  //     setData(data);
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/ip");
+      const data = await response.json();
+      setData(data);
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
   return (
     <main>
       hello world {ip} xx {JSON.stringify(data)}
