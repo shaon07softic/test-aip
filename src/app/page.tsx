@@ -20,9 +20,3 @@ export default async function Home({ ip }: any) {
     </main>
   );
 }
-
-Home.getInitialProps = async ({ req }: any) => {
-  const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
-  console.log(ip);
-  return { ip };
-};
