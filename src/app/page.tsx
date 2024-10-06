@@ -1,4 +1,4 @@
-export default async function Home() {
+export default async function Home({ ip }: any) {
   // const [data, setData] = useState(null);
 
   const data = await fetch("http://localhost:3000/api/ip", {
@@ -14,5 +14,15 @@ export default async function Home() {
 
   //   fetchData();
   // }, []);
-  return <main>hello world {JSON.stringify(data)}</main>;
+  return (
+    <main>
+      hello world {ip} xx {JSON.stringify(data)}
+    </main>
+  );
 }
+
+Home.getInitialProps = async ({ req }: any) => {
+  const ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
+  console.log(ip);
+  return { ip };
+};
